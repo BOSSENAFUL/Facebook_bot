@@ -1,0 +1,28 @@
+name: Enaful Smart Bot Deploy
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '*/25 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: node index.js
+      - name: Keep Alive
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Update by Developer by ENAFUL"
+          git push
