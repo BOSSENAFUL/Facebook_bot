@@ -1,0 +1,9 @@
+{
+  "name": "enaful-smart-bot",
+  "version": "3.5.0",
+  "main": "index.js",
+  "dependencies": {
+    "fca-project-orion": "latest",
+    "fs": "latest"
+  }
+}
